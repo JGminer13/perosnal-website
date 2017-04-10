@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Multiples of 3 and 5</title>
+
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet">
+
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		*::selection {
+			background-color: #ffffaa;
+		}
+
+		header {
+			padding: 10px;
+			background-color: #333;
+		}
+
+		header h1 {
+			font: 600 1.8em Open Sans;
+			color: #fff;
+			text-align: center;
+		}
+
+		header p {
+			width: 80%;
+			margin: 10px auto;
+			color: #fff;
+			font: 400 1em Open Sans;
+			text-align: center;
+		}
+
+		.instructions {
+			font-weight: 800;
+		}
+
+		section {
+			width: 80%;
+			margin: 10px auto;
+			text-align: center;
+		}
+
+		section input {
+			padding: 16px;
+			border: none;
+			outline: none;
+			font: 400 1em Open Sans;
+			border-bottom: 3px solid #fff;
+			transition: all 200ms ease-in-out;
+			width: 30%;
+		}
+
+		section input:focus {
+			border-color: #333;
+		}
+
+		.error {
+			background-color: #ff0000;
+			width: 50%;
+			margin: 20px auto;
+			border-radius: 10px;
+			font: 400 1em Open Sans;
+		}
+
+		.error p {
+			color: #fff;
+			padding: 20px;
+			text-align: center;
+		}
+
+		.answer {
+			background-color: #00ff00;
+			width: 50%;
+			margin: 20px auto;
+			border-radius: 10px;
+			font: 400 1em Open Sans;
+		}
+
+		.answer p {
+			color: #000;
+			padding: 20px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<h1>Multiples of 3 and 5</h1>
+
+		<p>
+			If we got all the multiples of 3 and 5 upto 10, we would get: 3, 5, 6, 9, 10
+
+			<br>
+			
+			<span class="instructions">Instructions:</span> In the input field you can insert a number, and we will calculate the sum of all the multiples.
+		</p>
+	</header>
+
+	<section>
+		<input type="number" placeholder="Enter Number..." class="insert">
+
+		<div class="error"></div>
+		<div class="answer"></div>
+	</section>
+
+	<script>
+
+		function main() {
+
+			var input = document.getElementsByClassName('insert');
+
+			document.addEventListener('keydown', function(e) {
+				if(window.event == 13 || e.which == 13) {
+					
+					var num = input[0].value;
+
+					if(num < 0) {
+						document.getElementsByClassName('error')[0].innerHTML = "<p>Please enter a positive number</p>";
+
+						input[0].value = "";
+					} else {
+
+						var sum = 0;
+						var multiples = [];
+
+						for(var i = 0; i < num; i++) {
+							if(i % 3 == 0) {
+								multiples.push(i);
+							} else if(i % 5 == 0) {
+								multiples.push(i);
+							}
+						}
+
+						multiples.forEach(function(num) {
+							sum += num;
+						});
+
+						document.getElementsByClassName('answer')[0].innerHTML = `<p>${sum}</p>`;
+						input[0].value = "";
+					}
+
+				}
+			})
+
+		}
+
+		window.onload = main;
+
+	</script>
+</body>
+</html>
